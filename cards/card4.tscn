@@ -1,0 +1,84 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/card.gd" type="Script" id=1]
+[ext_resource path="res://assets/cell_card.png" type="Texture" id=2]
+[ext_resource path="res://assets/center_card.png" type="Texture" id=3]
+
+[node name="card4" type="Area2D"]
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+number = 0
+
+[node name="bg" type="ColorRect" parent="."]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -140.0
+margin_top = -180.0
+margin_right = 140.0
+margin_bottom = 100.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.647059, 0.647059, 0.647059, 1 )
+_sections_unfolded = [ "Mouse" ]
+
+[node name="cells" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="cell_card2" type="Sprite" parent="cells"]
+position = Vector2( 0, -40 )
+texture = ExtResource( 2 )
+
+[node name="cell_card3" type="Sprite" parent="cells"]
+position = Vector2( -40, -40 )
+texture = ExtResource( 2 )
+
+[node name="cell_card4" type="Sprite" parent="cells"]
+position = Vector2( 40, -40 )
+texture = ExtResource( 2 )
+
+[node name="cell_card8" type="Sprite" parent="cells"]
+position = Vector2( 0, -80 )
+texture = ExtResource( 2 )
+
+[node name="cell_card9" type="Sprite" parent="cells"]
+position = Vector2( -40, 0 )
+texture = ExtResource( 2 )
+
+[node name="cell_card10" type="Sprite" parent="cells"]
+position = Vector2( -80, 0 )
+texture = ExtResource( 2 )
+
+[node name="cell_card13" type="Sprite" parent="cells"]
+position = Vector2( 40, 0 )
+texture = ExtResource( 2 )
+
+[node name="cell_card15" type="Sprite" parent="cells"]
+position = Vector2( 80, 0 )
+texture = ExtResource( 2 )
+
+[node name="cell_card14" type="Sprite" parent="cells"]
+position = Vector2( 0, -120 )
+texture = ExtResource( 2 )
+
+[node name="center_card" type="Sprite" parent="cells"]
+texture = ExtResource( 3 )
+
+[node name="collision" type="CollisionPolygon2D" parent="."]
+position = Vector2( -100, -40 )
+scale = Vector2( 1, 0.988281 )
+build_mode = 0
+polygon = PoolVector2Array( 120, -101.186, 80, -102.163, 80, -20.2372, 40, -20.2372, 40, 20.2372, 0, 20.2372, 0, 60.7115, 200, 60.7115, 200, 20.2372, 160, 20.2372, 160, -20.2372, 120, -20.2372 )
+
+[connection signal="input_event" from="." to="." method="_on_card_input_event"]
