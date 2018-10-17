@@ -1,15 +1,27 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://objects/cell.tscn" type="PackedScene" id=2]
-[ext_resource path="res://cards/card1.tscn" type="PackedScene" id=3]
-[ext_resource path="res://cards/card2.tscn" type="PackedScene" id=4]
-[ext_resource path="res://cards/card3.tscn" type="PackedScene" id=5]
-[ext_resource path="res://cards/card4.tscn" type="PackedScene" id=6]
-[ext_resource path="res://objects/player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://objects/player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/8bit16.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://cards/card1.tscn" type="PackedScene" id=5]
+[ext_resource path="res://cards/card2.tscn" type="PackedScene" id=6]
+[ext_resource path="res://cards/card3.tscn" type="PackedScene" id=7]
+[ext_resource path="res://cards/card4.tscn" type="PackedScene" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+
+size = 64
+outline_size = 0
+outline_color = Color( 1, 1, 1, 1 )
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 4 )
+_sections_unfolded = [ "Font" ]
 
 [node name="game" type="Node2D"]
 script = ExtResource( 1 )
+time = 200
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_left = 0.0
@@ -186,43 +198,136 @@ position = Vector2( 300, 280 )
 [node name="cell50" parent="board" instance=ExtResource( 2 )]
 position = Vector2( 300, 200 )
 
-[node name="card1" parent="." instance=ExtResource( 3 )]
-position = Vector2( 68, 570 )
-scale = Vector2( 0.2, 0.2 )
-_sections_unfolded = [ "Transform" ]
-number = 1
-
-[node name="card2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 140, 570 )
-scale = Vector2( 0.2, 0.2 )
-_sections_unfolded = [ "Transform" ]
-number = 2
-
-[node name="card3" parent="." instance=ExtResource( 5 )]
-position = Vector2( 213.6, 570 )
-scale = Vector2( 0.2, 0.2 )
-_sections_unfolded = [ "Transform" ]
-number = 3
-
-[node name="card4" parent="." instance=ExtResource( 6 )]
-position = Vector2( 292, 578.437 )
-scale = Vector2( 0.2, 0.2 )
-_sections_unfolded = [ "Transform" ]
-number = 4
-
 [node name="players" type="Node2D" parent="."]
+editor/display_folded = true
 
-[node name="player1" parent="players" instance=ExtResource( 7 )]
+[node name="player1" parent="players" instance=ExtResource( 3 )]
 position = Vector2( 220, 480 )
 scale = Vector2( 2, 2 )
 input_pickable = true
 _sections_unfolded = [ "Pickable", "Transform" ]
 
-[node name="player2" parent="players" instance=ExtResource( 7 )]
-position = Vector2( 100, 360 )
+[node name="player2" parent="players" instance=ExtResource( 3 )]
+position = Vector2( 60, 200 )
 scale = Vector2( 2, 2 )
 input_pickable = true
 _sections_unfolded = [ "Pickable", "Transform" ]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+editor/display_folded = true
+position = Vector2( 180, 320 )
+anchor_mode = 1
+rotating = false
+current = false
+zoom = Vector2( 1, 1 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+
+[node name="Tween" type="Tween" parent="Camera2D"]
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="HUD" type="CanvasLayer" parent="."]
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="lpoints" type="Label" parent="HUD"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 10.0
+margin_right = 120.0
+margin_bottom = 50.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+text = "2"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect", "custom_fonts" ]
+
+[node name="ltime" type="Label" parent="HUD"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 204.0
+margin_top = 10.0
+margin_right = 348.0
+margin_bottom = 50.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+text = "100"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect", "custom_fonts" ]
+
+[node name="Timer" type="Timer" parent="HUD"]
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = true
+
+[node name="card1" parent="HUD" instance=ExtResource( 5 )]
+position = Vector2( 68, 570 )
+scale = Vector2( 0.2, 0.2 )
+_sections_unfolded = [ "Pickable", "Transform" ]
+number = 1
+
+[node name="card2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 140, 570 )
+scale = Vector2( 0.2, 0.2 )
+_sections_unfolded = [ "Pickable", "Transform" ]
+number = 2
+
+[node name="card3" parent="." instance=ExtResource( 7 )]
+position = Vector2( 213.6, 570 )
+scale = Vector2( 0.2, 0.2 )
+_sections_unfolded = [ "Pickable", "Transform" ]
+number = 3
+
+[node name="card4" parent="." instance=ExtResource( 8 )]
+position = Vector2( 292, 578.437 )
+scale = Vector2( 0.2, 0.2 )
+_sections_unfolded = [ "Transform" ]
+number = 4
 
 [connection signal="clicked" from="board/cell17" to="." method="_on_cell_clicked"]
 [connection signal="clicked" from="board/cell30" to="." method="_on_cell_clicked"]
@@ -276,9 +381,10 @@ _sections_unfolded = [ "Pickable", "Transform" ]
 [connection signal="clicked" from="board/cell24" to="." method="_on_cell_clicked"]
 [connection signal="clicked" from="board/cell36" to="." method="_on_cell_clicked"]
 [connection signal="clicked" from="board/cell50" to="." method="_on_cell_clicked"]
-[connection signal="selected_card" from="card1" to="." method="_on_card_selected_card"]
+[connection signal="player_selected" from="players/player1" to="." method="_on_player_player_selected"]
+[connection signal="player_selected" from="players/player2" to="." method="_on_player_player_selected"]
+[connection signal="timeout" from="HUD/Timer" to="." method="_on_Timer_timeout"]
+[connection signal="selected_card" from="HUD/card1" to="." method="_on_card_selected_card"]
 [connection signal="selected_card" from="card2" to="." method="_on_card_selected_card"]
 [connection signal="selected_card" from="card3" to="." method="_on_card_selected_card"]
 [connection signal="selected_card" from="card4" to="." method="_on_card_selected_card"]
-[connection signal="player_selected" from="players/player1" to="." method="_on_player_player_selected"]
-[connection signal="player_selected" from="players/player2" to="." method="_on_player_player_selected"]

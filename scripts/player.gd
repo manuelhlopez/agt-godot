@@ -26,8 +26,10 @@ func move(position):
 
 func _on_player_input_event(viewport, event, shape_idx):
 	if (event is InputEventMouseButton && event.pressed):
+		$effects.emitting = true
 		emit_signal("player_selected",self)
 
 
 func _on_Tween_tween_completed(object, key):
 	$AnimatedSprite.animation = "idle"
+	$effects.emitting = true

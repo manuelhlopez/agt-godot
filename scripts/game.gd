@@ -6,6 +6,9 @@ extends Node2D
 #3 select a cell o card
 var status = 1
 
+export var time = 200
+var points = 0
+
 var collision
 var player
 
@@ -19,6 +22,9 @@ func _on_cell_clicked(cell):
 		player.move(cell.position)
 		collision.queue_free()
 		status = 1
+		
+		points += 2
+		$HUD/lpoints.text = str(points)
 
 func _on_card_selected_card(card):
 	if (status == 2):
@@ -37,5 +43,11 @@ func _on_player_player_selected(player):
 			p.modulate = Color(1.0,1.0,1.0,1.0)
 		self.player = player
 		player.modulate = Color(1.0,0.0,0.0,1.0)
+		$Camera2D/Tween.interpolate_property($Camera2D,"position",$Camera2D.position,player.position,2,Tween.TRANS_QUART,Tween.EASE_OUT)
+		$Camera2D/Tween.start()
 		status = 2
-	
+
+
+func _on_Timer_timeout():
+	time -= 1
+	$HUD/ltime.text = str(time)
