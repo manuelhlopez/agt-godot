@@ -1,17 +1,17 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://objects/cell.tscn" type="PackedScene" id=2]
 [ext_resource path="res://cards/card1.tscn" type="PackedScene" id=3]
 [ext_resource path="res://cards/card2.tscn" type="PackedScene" id=4]
 [ext_resource path="res://cards/card3.tscn" type="PackedScene" id=5]
-[ext_resource path="res://objects/player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://cards/card4.tscn" type="PackedScene" id=6]
+[ext_resource path="res://objects/player.tscn" type="PackedScene" id=7]
 
 [node name="game" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -198,24 +198,27 @@ scale = Vector2( 0.2, 0.2 )
 _sections_unfolded = [ "Transform" ]
 number = 2
 
-[node name="card4" parent="." instance=ExtResource( 4 )]
-position = Vector2( 290, 570 )
-scale = Vector2( 0.2, 0.2 )
-_sections_unfolded = [ "Transform" ]
-number = 2
-
 [node name="card3" parent="." instance=ExtResource( 5 )]
 position = Vector2( 213.6, 570 )
 scale = Vector2( 0.2, 0.2 )
+_sections_unfolded = [ "Transform" ]
 number = 3
 
-[node name="player1" parent="." instance=ExtResource( 6 )]
+[node name="card4" parent="." instance=ExtResource( 6 )]
+position = Vector2( 292, 578.437 )
+scale = Vector2( 0.2, 0.2 )
+_sections_unfolded = [ "Transform" ]
+number = 4
+
+[node name="players" type="Node2D" parent="."]
+
+[node name="player1" parent="players" instance=ExtResource( 7 )]
 position = Vector2( 220, 480 )
 scale = Vector2( 2, 2 )
 input_pickable = true
 _sections_unfolded = [ "Pickable", "Transform" ]
 
-[node name="player2" parent="." instance=ExtResource( 6 )]
+[node name="player2" parent="players" instance=ExtResource( 7 )]
 position = Vector2( 100, 360 )
 scale = Vector2( 2, 2 )
 input_pickable = true
@@ -275,7 +278,7 @@ _sections_unfolded = [ "Pickable", "Transform" ]
 [connection signal="clicked" from="board/cell50" to="." method="_on_cell_clicked"]
 [connection signal="selected_card" from="card1" to="." method="_on_card_selected_card"]
 [connection signal="selected_card" from="card2" to="." method="_on_card_selected_card"]
-[connection signal="selected_card" from="card4" to="." method="_on_card_selected_card"]
 [connection signal="selected_card" from="card3" to="." method="_on_card_selected_card"]
-[connection signal="player_selected" from="player1" to="." method="_on_player_player_selected"]
-[connection signal="player_selected" from="player2" to="." method="_on_player_player_selected"]
+[connection signal="selected_card" from="card4" to="." method="_on_card_selected_card"]
+[connection signal="player_selected" from="players/player1" to="." method="_on_player_player_selected"]
+[connection signal="player_selected" from="players/player2" to="." method="_on_player_player_selected"]

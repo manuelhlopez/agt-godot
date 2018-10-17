@@ -10,16 +10,13 @@ var collision
 var player
 
 func _ready():
-	
 	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 func _on_cell_clicked(cell):
 	if (cell.status == 1 && status == 3):
-		player.position = cell.position
+		player.modulate = Color(1.0,1.0,1.0,1.0)
+		player.move(cell.position)
 		collision.queue_free()
 		status = 1
 
@@ -35,7 +32,10 @@ func _on_card_selected_card(card):
 
 
 func _on_player_player_selected(player):
-	if (status == 1):
+	if (status == 1 || status == 2):
+		for p in $players.get_children():
+			p.modulate = Color(1.0,1.0,1.0,1.0)
 		self.player = player
+		player.modulate = Color(1.0,0.0,0.0,1.0)
 		status = 2
 	
