@@ -5,6 +5,8 @@ extends Area2D
 # var b = "text"
 signal selected_card
 export var number = 0
+export var pos = 0
+
 func _ready():
 	pass # Replace with function body.
 
@@ -14,6 +16,7 @@ func _ready():
 func hide_cells():
 	$cells.visible = false
 	$bg.visible = false
+	$CollisionShape2D.queue_free()
 
 func _on_card_input_event(viewport, event, shape_idx):
 	if (event is InputEventMouseButton && event.pressed):

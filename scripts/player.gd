@@ -1,8 +1,6 @@
 extends KinematicBody2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+export var life = 100
 signal player_selected
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,3 +31,8 @@ func _on_player_input_event(viewport, event, shape_idx):
 func _on_Tween_tween_completed(object, key):
 	$AnimatedSprite.animation = "idle"
 	$effects.emitting = true
+
+func remove_life(number):
+	life -= number
+	$progress.value = life
+	pass

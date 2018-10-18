@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/card.gd" type="Script" id=1]
 [ext_resource path="res://assets/cell_card.png" type="Texture" id=2]
 [ext_resource path="res://assets/center_card.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 140, 140 )
 
 [node name="card3" type="Area2D"]
 input_pickable = true
@@ -14,6 +19,7 @@ audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
 number = 0
+pos = 0
 
 [node name="bg" type="ColorRect" parent="."]
 anchor_left = 0.0
@@ -34,6 +40,7 @@ color = Color( 0.647059, 0.647059, 0.647059, 1 )
 _sections_unfolded = [ "Mouse" ]
 
 [node name="cells" type="Node2D" parent="."]
+editor/display_folded = true
 
 [node name="cell_card2" type="Sprite" parent="cells"]
 position = Vector2( 0, -40 )
@@ -59,5 +66,8 @@ position = Vector2( -100, 0.965637 )
 scale = Vector2( 1, 0.988281 )
 build_mode = 0
 polygon = PoolVector2Array( 120, -102.163, 80, -102.163, 80, 100.209, 120, 100.209 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
 
 [connection signal="input_event" from="." to="." method="_on_card_input_event"]
