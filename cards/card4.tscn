@@ -87,7 +87,7 @@ scale = Vector2( 1, 0.988281 )
 build_mode = 0
 polygon = PoolVector2Array( 120, -101.186, 80, -102.163, 80, -20.2372, 40, -20.2372, 40, 20.2372, 0, 20.2372, 0, 60.7115, 200, 60.7115, 200, 20.2372, 160, 20.2372, 160, -20.2372, 120, -20.2372 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="square" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [connection signal="input_event" from="." to="." method="_on_card_input_event"]

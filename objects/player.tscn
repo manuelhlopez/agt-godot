@@ -1,10 +1,10 @@
 [gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scripts/player.gd" type="Script" id=1]
-[ext_resource path="res://assets/player/player7.png" type="Texture" id=2]
-[ext_resource path="res://assets/player/player8.png" type="Texture" id=3]
-[ext_resource path="res://assets/player/player5.png" type="Texture" id=4]
-[ext_resource path="res://assets/player/player6.png" type="Texture" id=5]
+[ext_resource path="res://assets/player/player5.png" type="Texture" id=2]
+[ext_resource path="res://assets/player/player6.png" type="Texture" id=3]
+[ext_resource path="res://assets/player/player7.png" type="Texture" id=4]
+[ext_resource path="res://assets/player/player8.png" type="Texture" id=5]
 [ext_resource path="res://assets/player/player3.png" type="Texture" id=6]
 [ext_resource path="res://assets/player/player4.png" type="Texture" id=7]
 [ext_resource path="res://assets/player/player1.png" type="Texture" id=8]
@@ -63,12 +63,12 @@ extents = Vector2( 6.66705, 7.88344 )
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
 "loop": true,
-"name": "left",
+"name": "right",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
 "loop": true,
-"name": "right",
+"name": "left",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ), ExtResource( 7 ) ],

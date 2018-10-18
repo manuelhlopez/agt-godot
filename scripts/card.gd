@@ -1,23 +1,23 @@
 extends Area2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+#señal que se emite cuando se hace click
 signal selected_card
+
+#que tipo de carta es.
 export var number = 0
+#en que posicion se encuentra.
 export var pos = 0
 
-func _ready():
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+#Esta funcion sirve para utilizar el collision
+#de la carta en el tablero para encender las 
+#celdas elegidas.
 func hide_cells():
 	$cells.visible = false
 	$bg.visible = false
-	$CollisionShape2D.queue_free()
+	$square.queue_free()
 
+#Metodo que se activa cuando se le da click
+#a la carta
 func _on_card_input_event(viewport, event, shape_idx):
 	if (event is InputEventMouseButton && event.pressed):
 		emit_signal("selected_card",self)
